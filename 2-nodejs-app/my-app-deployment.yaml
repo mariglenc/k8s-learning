@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-hello-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-hello-app
+  template:
+    metadata:
+      labels:
+        app: my-hello-app
+    spec:
+      containers:
+      - name: my-hello-app
+        image: my-hello-app:3.0
+        imagePullPolicy: IfNotPresent    # IMPORTANT: don't try to pull from a registry
+        ports:
+        - containerPort: 3000
